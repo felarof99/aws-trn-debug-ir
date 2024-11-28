@@ -1,0 +1,18 @@
+#loc1 = loc("args[0]")
+#loc2 = loc("args[1]")
+module @jit_concatenate attributes {mhlo.num_partitions = 1 : i32, mhlo.num_replicas = 1 : i32} {
+  func.func public @main(%arg0: tensor<2xui32> loc("args[0]"), %arg1: tensor<2xui32> loc("args[1]")) -> (tensor<4xui32> {jax.result_info = ""}) {
+    %0 = stablehlo.concatenate %arg0, %arg1, dim = 0 : (tensor<2xui32>, tensor<2xui32>) -> tensor<4xui32> loc(#loc11)
+    return %0 : tensor<4xui32> loc(#loc)
+  } loc(#loc)
+} loc(#loc)
+#loc = loc(unknown)
+#loc3 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/checkpoint.py":234:0)
+#loc4 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/trainer.py":126:0)
+#loc5 = loc("/home/ubuntu/roadrunner-fork/trainers/llama3_alpaca_finetune/pipeline.py":119:0)
+#loc6 = loc("load_llama_from_hf"(#loc3))
+#loc7 = loc("__init__"(#loc4))
+#loc8 = loc("<module>"(#loc5))
+#loc9 = loc(callsite(#loc7 at #loc8))
+#loc10 = loc(callsite(#loc6 at #loc9))
+#loc11 = loc("jit(concatenate)/jit(main)/concatenate"(#loc10))

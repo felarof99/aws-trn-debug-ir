@@ -1,0 +1,16 @@
+module @jit_iota attributes {mhlo.num_partitions = 1 : i32, mhlo.num_replicas = 1 : i32} {
+  func.func public @main() -> (tensor<32xi32> {jax.result_info = ""}) {
+    %0 = stablehlo.iota dim = 0 : tensor<32xi32> loc(#loc9)
+    return %0 : tensor<32xi32> loc(#loc)
+  } loc(#loc)
+} loc(#loc)
+#loc = loc(unknown)
+#loc1 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/trainer.py":439:0)
+#loc2 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/trainer.py":294:0)
+#loc3 = loc("/home/ubuntu/roadrunner-fork/trainers/llama3_alpaca_finetune/pipeline.py":127:0)
+#loc4 = loc("_preprocess_batch"(#loc1))
+#loc5 = loc("train"(#loc2))
+#loc6 = loc("<module>"(#loc3))
+#loc7 = loc(callsite(#loc5 at #loc6))
+#loc8 = loc(callsite(#loc4 at #loc7))
+#loc9 = loc("jit(iota)/jit(main)/iota"(#loc8))

@@ -1,0 +1,25 @@
+#loc1 = loc("args[0]")
+#loc2 = loc("args[1]")
+#loc3 = loc("args[2]")
+#loc4 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/checkpoint.py":278:0)
+#loc5 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/checkpoint.py":354:0)
+#loc6 = loc("/home/ubuntu/roadrunner-fork/src/felafax/trainer_engine/trainer.py":126:0)
+#loc7 = loc("/home/ubuntu/roadrunner-fork/trainers/llama3_alpaca_finetune/pipeline.py":119:0)
+#loc8 = loc("_copy_weights"(#loc4))
+#loc9 = loc("load_llama_from_hf"(#loc5))
+#loc10 = loc("__init__"(#loc6))
+#loc11 = loc("<module>"(#loc7))
+#loc12 = loc(callsite(#loc10 at #loc11))
+#loc13 = loc(callsite(#loc9 at #loc12))
+#loc14 = loc(callsite(#loc8 at #loc13))
+#loc15 = loc("jit(scatter)/jit(main)/scatter"(#loc14))
+module @jit_scatter attributes {mhlo.num_partitions = 2 : i32, mhlo.num_replicas = 1 : i32} {
+  func.func public @main(%arg0: tensor<16x2048x8192xbf16> loc("args[0]"), %arg1: tensor<1xi32> loc("args[1]"), %arg2: tensor<2048x8192xbf16> {mhlo.sharding = "{devices=[2,1]<=[2]}"} loc("args[2]")) -> (tensor<16x2048x8192xbf16> {jax.result_info = ""}) {
+    %0 = "stablehlo.scatter"(%arg0, %arg1, %arg2) <{indices_are_sorted = true, scatter_dimension_numbers = #stablehlo.scatter<update_window_dims = [0, 1], inserted_window_dims = [0], scatter_dims_to_operand_dims = [0]>, unique_indices = true}> ({
+    ^bb0(%arg3: tensor<bf16> loc("jit(scatter)/jit(main)/scatter"(#loc14)), %arg4: tensor<bf16> loc("jit(scatter)/jit(main)/scatter"(#loc14))):
+      stablehlo.return %arg4 : tensor<bf16> loc(#loc15)
+    }) : (tensor<16x2048x8192xbf16>, tensor<1xi32>, tensor<2048x8192xbf16>) -> tensor<16x2048x8192xbf16> loc(#loc15)
+    return %0 : tensor<16x2048x8192xbf16> loc(#loc)
+  } loc(#loc)
+} loc(#loc)
+#loc = loc(unknown)
